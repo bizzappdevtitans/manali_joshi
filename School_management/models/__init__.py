@@ -15,4 +15,12 @@ from . import fees_structure
 from . import timetable_structure
 from . import about_us
 from . import home_page
-from . import school_description
+from . import inherit_sale_order
+from . import inherit_invoice
+from . import inherit_sale_order_line
+from . import inherit_stock_picking
+from . import inherit_stock_move
+from . import inherit_project
+from . import inherit_purchase
+from . import inherit_manufracture
+from . import inherit_stock_rule

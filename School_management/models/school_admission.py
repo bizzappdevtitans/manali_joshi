@@ -80,12 +80,13 @@ class SchoolAdmission(models.Model):
                 "type": "rainbow_man",
             }
         }
-
+# Combine First name & last name
     @api.depends("first_name", "last_name")
     def _compute_fields_combination(self):
         for test in self:
             test.combination = test.first_name + " " + test.last_name
 
+# Calculate age from Date of birth
     @api.onchange("birth")
     def _compute_age(self):
         for res in self:
@@ -93,21 +94,21 @@ class SchoolAdmission(models.Model):
             if res.birth:
                 res.age = today.year - res.birth.year
 
+# Check the age of the student 
     @api.constrains("age")
     def _check_something(self):
         for record in self:
             if record.age < 10:
                 raise ValidationError("Age is Less than 10")
 
+# Unlink method for not removing confirmed admissions
     @api.ondelete(at_uninstall=False)
     def _unlink_except_done(self):
         if any(batch.state == "end" for batch in self):
             raise UserError(("You cannot delete Confirmed admission."))
-
+            
+# Generate sequence number
     @api.model
     def create(self, vals):
         vals["reference_no"] = self.env["ir.sequence"].next_by_code("school.admission")
         return super(SchoolAdmission, self).create(vals)
-
-    # def _unlink_states(self):
-    #     self.env['school.admission'].browse(self._unlink_except_done.id).unlink()

@@ -7,10 +7,11 @@ class AssignmentSubmit(models.Model):
 
     _name = "assignment.submit"
     _description = "School Management system"
+    _rec_name ="assigned_id2"
 
     date = fields.Date(string="Date")
-    assigned1 = fields.Many2one("school.teachers", "Assinged by")
-    assigned_id1 = fields.Many2one("school.students", "Assinged To")
+    assigned_id1 = fields.Many2one("school.teachers", "Assinged by")
+    assigned_id2 = fields.Many2one("school.students", "Assinged To")
     Type = fields.Selection(
         [
             ("soft", "Soft Copy"),
@@ -45,7 +46,7 @@ class AssignmentSubmit(models.Model):
         string="Details",
     )
 
-    # Override Unlink Function
+    # Override Unlink Function for not removing submitted assignment
     @api.model
     def unlink(self, values):
         if (states == "end" for states in self):

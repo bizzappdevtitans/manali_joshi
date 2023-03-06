@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 class SchoolFees(models.Model):
     _name = "school.fees"
     _description = "School Management system"
+    _rec_name ="stui_id"
 
     stui_id = fields.Many2one("school.students", "Student Details")
     description = fields.Text(string="Description")

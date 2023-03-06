@@ -4,6 +4,7 @@ from odoo import api, fields, models
 class SchoolTimetable(models.Model):
     _name = "school.timetable"
     _description = "School Management system"
+    _rec_name = "acayear"
 
     Section = fields.Selection(
         [
@@ -21,9 +22,9 @@ class SchoolTimetable(models.Model):
             ("12c", "12th Commerce"),
         ]
     )
-    timet = fields.Many2many("timetable.structure", string="TimeTable Details")
+    timet_ids = fields.Many2many("timetable.structure", string="TimeTable Details")
 
-    # DEFAULT VALUE
+    # DEFAULT VALUE For field academic year
     @api.model
     def default_get(self, fields_list=[]):
         result = super(SchoolTimetable, self).default_get(fields_list)

@@ -17,7 +17,9 @@ class StudentsResult(models.Model):
     percent = fields.Float(string="Percentage", compute="_compute_percentage")
     eligible = fields.Boolean(string="Click if Eligible")
     remarks = fields.Char(string="Remarks")
+    
 
+# Compute the total marks of subjects
     api.depends("english", "maths", "comp", "physics", "chem", "bio")
 
     def _compute_total(self):
@@ -32,6 +34,7 @@ class StudentsResult(models.Model):
                     + rec.bio,
                 }
             )
+# Compute the Percentage 
 
     def _compute_percentage(self):
         for rec in self:
@@ -41,11 +44,10 @@ class StudentsResult(models.Model):
                 }
             )
 
-    # ORM GETNAME
+# ORM GETNAME for eligible
     @api.model
     def name_get(self):
         res = []
         for rec in self:
             res.append((rec.id, "%s" % (rec.eligible)))
         return res
-

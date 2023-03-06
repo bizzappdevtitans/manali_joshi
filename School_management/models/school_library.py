@@ -7,9 +7,7 @@ class SchoolLibrary(models.Model):
     _name = "school.library"
     _description = "School Management system"
 
-    # name_stu = fields.Many2one("school.students", "Name")
     lib_id = fields.Integer(string="Library ID")
-    # phone = fields.Char(related="name_stu.phone", string="Students Phone")
     subject = fields.Text(string="Approval Subject")
     category = fields.Selection(
         [
@@ -32,6 +30,7 @@ class SchoolLibrary(models.Model):
         string="Details",
     )
 
+
     _sql_constraints = [
         ("lib_id_unique", "unique (lib_id)", "Student ID is already exists...!")
     ]
@@ -42,6 +41,8 @@ class SchoolLibrary(models.Model):
         if not self.category:
             raise UserError("No Category were selected.")
             return True
+
+
 
     # ORM GETNAME
     @api.model

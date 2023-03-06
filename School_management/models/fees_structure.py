@@ -18,7 +18,7 @@ class FeesStructure(models.Model):
             ("12", "12th Science"),
         ]
     )
-
+# compute the total fees
     api.depends("academicf", "tut", "can", "transpo")
 
     def _compute_total(self):

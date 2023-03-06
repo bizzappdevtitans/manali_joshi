@@ -150,6 +150,7 @@
                 <field name="name"/>
                 <field name="stui_id"/>
                 <field name="email" widget="email"/>
+                <field name="level"/>
                 <field name="standard"/>
             </tree>
         </field>
@@ -161,6 +162,10 @@
         <field name="model">school.students</field>
         <field name="arch" type="xml"> 
             <form>
+                <header>
+                    <button name="%(action_view_student_wizard)d" title="Student Level" type="action"
+                        string="Student Level"/>
+                    </header>
                 <sheet>
                      <div class="oe_button_box" name="button_box">
                         <button name="get_vehicles"
@@ -190,7 +195,7 @@
                     </group>
                     <group col="3">
                         <field name="photo" widget="image" width="70px" height="70px"/>
-                         <field name="result"/>
+                         <field name="result_ids" />
                     </group>
                     <button name="action_browse" type="object" string="Browse Search">
                     </button>
@@ -254,7 +259,6 @@
             <tree> 
                 <field name="tecname" />
                 <field name="email" widget="email"/>
-                <!-- <field name="phone" widget="phone"/> -->
                 <field name="qualification"/>
             </tree>
         </field>
@@ -272,20 +276,13 @@
                     <field name="phone" widget="phone"/>
                     <field name="address"/>
                     <field name="qualification"/>
-                    <!-- <field name="photo"/> -->
 
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
-
-                              <!--   <div class="o_kanban_image">
-                                    <img alt="Avatar" t-att-src="kanban_image('school.teachers', 'photo_medium',record.name.value)"/>
-                                </div> -->
                                
                                 <div class="oe_kanban_details">
-                                   <!--  <strong class="o_kanban_record_title">
-                                    <field name="name"/>
-                                    </strong> -->
+                            
                                 <div t-if="record.phone.value">
                                         <t t-esc="record.phone.value"/>
                                 </div>
@@ -423,7 +420,7 @@
         <field name="model">school.attendance</field>
         <field name="arch" type="xml">
             <tree> 
-                <field name="name_n"/>
+                <field name="names_id"/>
                 <field name="date"/>
                 <field name="Select"/>
 
@@ -438,10 +435,10 @@
         <field name="name">school.attendance.calendar</field>
         <field name="model">school.attendance</field>
         <field name="arch" type="xml">
-            <calendar date_start="date" string="Attendance" mode="month" color="name_n" event_limit="5"
+            <calendar date_start="date" string="Attendance" mode="month" color="names_id" event_limit="5"
                  hide_time="true" js_class="project_calendar" event_open_popup="true" quick_add="false">
                 <field name="date"/>
-                <field name="name_n"/>
+                <field name="names_id"/>
                 <field name="Class" widget="radio"/>
                 <field name="colour" widget="color_picker"/>
                 <field name="Select"/>
@@ -459,7 +456,7 @@
                     <group string="Attendance Details">
                         <group>
                         <field name="date"/>
-                        <field name="name_n"/>
+                        <field name="names_id"/>
                     </group>
                         <group>
                         <field name="Class" widget="radio"/>
@@ -467,7 +464,7 @@
                         <field name="Select"/>
                         <field name="referencepro"/>
                         </group>
-                     </group>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -496,8 +493,8 @@
             <tree> 
             
                 <field name="date"/>
-                <field name="assigned"/>
-                <field name="assigned_id"/>
+                <field name="assigned1_id"/>
+                <field name="assigned2_id"/>
                 <field name="subject"/>
                 <field name="deadline"/>
                 <field name="desc"/>
@@ -516,8 +513,8 @@
                     <group string="Assignment Details">
                         <group>
                         <field name="date"/>
-                        <field name="assigned"/>
-                        <field name="assigned_id"/>
+                        <field name="assigned1_id"/>
+                        <field name="assigned2_id"/>
                         <field name="Type" widget="radio"/>
                         <field name="subject"/>
                         <field name="deadline"/>
@@ -544,8 +541,8 @@
             <tree> 
             
                 <field name="date"/>
-                <field name="assigned1"/>
                 <field name="assigned_id1"/>
+                <field name="assigned_id2"/>
                 <field name="submit" widget="file"/> 
 
             </tree>
@@ -568,8 +565,8 @@
                     <group string="Assignment Details">
                         <group>
                         <field name="date"/>
-                        <field name="assigned1"/>
                         <field name="assigned_id1"/>
+                        <field name="assigned_id2"/>
                         <field name="Type" widget="radio"/>
                         <field name="subject"/>
                         <field name="deadline"/>
@@ -615,9 +612,7 @@
                 <sheet>
                     <group string="Library Form">
                         <group col="1">
-                        <!-- <field name="name_stu"/> -->
                         <field name="lib_id"/>
-                        <!-- <field name="phone"/> -->
                         <field name="subject"/>
                         <field name="references"/>
                         
@@ -632,7 +627,6 @@
                             <field name="time1"/>
                             <field name="time2"/>
                         </group>
-
                     </group>
                 </sheet>
             </form>
@@ -663,7 +657,7 @@
                        <group col="1">
                        <field name="name"/>
                        <field name="names"/>
-                       <field name="parentof"/>
+                       <field name="parentof_id"/>
                        <field name="email" widget="email"/>
                        <field name="phone" widget="phone"/>
                        <field name="phones" widget="phone"/>
@@ -693,7 +687,7 @@
             <tree>
                 <field name="name"/>
                 <field name="names"/>
-                <field name="parentof"/>
+                <field name="parentof_id"/>
             </tree>
         </field>
     </record>
@@ -822,8 +816,6 @@
             <search position="inside">
             <searchpanel>
                 <field name="Section" enable_counters="1" icon="fa fa-user"/>
-                <!-- <field name="science" enable_counters="1" icon="fa fa-user"/>
-                <field name="commerce" enable_counters="1" icon="fa fa-user"/> -->
                 <field name="standard" enable_counters="1" icon="fa fa-user"/>
             </searchpanel>
            </search>
@@ -878,7 +870,7 @@
                 </group> 
                 <notebook>
                         <page string="TimeTable Details">
-                        <field name="timet"/> 
+                        <field name="timet_ids"/> 
                         </page>
                     </notebook>
             </sheet>
@@ -909,7 +901,7 @@
                     <group string="TimeTable">
                         <group col="1">
                         <field name="week"/>
-                        <field name="tename"/>
+                        <field name="tename_id"/>
                         <field name="sub"/>
                         <field name="star"/>
                         <field name="end"/>
@@ -926,7 +918,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="week"/>
-                <field name="tename"/>
+                <field name="tename_id"/>
                 <field name="sub"/>
             </tree>
         </field>
@@ -961,10 +953,6 @@
                 <field name="stui_id"/>
                 <field name="number"/>
                 <field name="paydate"/>
-              <!--   <field name="academicf"/>
-                <field name="tut"/>
-                <field name="can"/>
-                <field name="transpo"/> -->
                 <field name="totalfees"/>
             </tree>
         </field>

@@ -9,7 +9,7 @@ class SchoolParents(models.Model):
 
     name = fields.Char(string="Father Name")
     names = fields.Char(string="Mother Name")
-    parentof = fields.Many2one("school.students", "Student Name")
+    parentof_id = fields.Many2one("school.students", "Student Name")
     email = fields.Char(string="Parent Email")
     phone = fields.Char(string="Father's Contact No.")
     phones = fields.Char(string="Mother's Contact No.")
@@ -24,6 +24,8 @@ class SchoolParents(models.Model):
         ]
     )
 
+# Email Validation
+
     @api.onchange("email")
     def validate_mail(self):
         if self.email:
@@ -33,6 +35,8 @@ class SchoolParents(models.Model):
             )
             if match == None:
                 raise ValidationError("Not a valid E-mail ID")
+                
+# Phone Validation
 
     @api.constrains("phone")
     def _check_phones(self):
@@ -60,13 +64,8 @@ class SchoolParents(models.Model):
             "context": "{'create': False}",
         }
 
-    # def compute_count(self):
-    #     for record in self:
-    #         record.Teacher_count = len(self.teachname)
-
     def compute_count(self):
         for record in self:
             record.Teacher_count = self.env["school.teachers"].search_count(
                 [("id", "in", self.teachname.ids)]
             )
-

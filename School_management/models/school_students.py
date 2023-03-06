@@ -37,18 +37,15 @@ class SchoolStudents(models.Model):
         ]
     )
     photo = fields.Binary(string="Upload Image")
+    level = fields.Char(string="Level")
 
-    result = fields.One2many("students.results", "name_id", "Result")
+    result_ids = fields.One2many("students.results", "name_id", "Result")
     Total_count = fields.Integer(compute="compute_count")
 
     stui_id = fields.Char(
-        string="Student Id",
-        required=True,
-        index=True,
-        copy=False,
-        default="New"
+        string="Student Id", required=True, index=True, copy=False, default="New"
     )
-
+# Calculate the age by the given dob
     api.depends("birthdate")
 
     def _compute_age(self):
@@ -107,10 +104,8 @@ class SchoolStudents(models.Model):
             name_get_uid=name_get_uid,
         )
 
-# sequence generate for student id
+    # sequence generate for student id
     @api.model
     def create(self, vals):
-        vals['stui_id'] = self.env['ir.sequence'].next_by_code('school.students')
+        vals["stui_id"] = self.env["ir.sequence"].next_by_code("school.students")
         return super(SchoolStudents, self).create(vals)
-
-

@@ -21,6 +21,7 @@ class SchoolTeachers(models.Model):
     address = fields.Text(string="Teacher Address")
     qualification = fields.Char(string="Teacher Qualification")
 
+    # Phone Validation
     @api.constrains("phone")
     def _check_phone(self):
         for record in self:
@@ -48,27 +49,4 @@ class SchoolTeachers(models.Model):
                 ("email", operator, name),
                 ("phone", operator, name),
             ]
-        return self._search(
-            args, limit=limit, access_rights_uid=name_get_uid
-        )
-
-    # @api.model
-    # def create(self, vals):
-    #     print("Priyanka", vals)
-    #     return super("school.teachers", self).create(vals)
-
-    # @api.models
-    # def _name_search(
-    #     self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
-    # ):
-    #     args = args or []
-    #     domain = []
-    #     if name:
-    #         domain == [
-    #             "|",
-    #             "|",
-    #             ("tecname", operator, name),
-    #             ("email", operator, name),
-    #             ("phone", operator, name),
-    #         ]
-    #     return self._search(domain + args, limit=limit, access_rights_uid=name_get_uid)
+        return self._search(args, limit=limit, access_rights_uid=name_get_uid)
