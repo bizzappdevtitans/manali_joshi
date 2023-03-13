@@ -35,7 +35,11 @@ class AssignmentSubmit(models.Model):
     )
 
     def button_in_progress(self):
-        self.write({"states": "end"})
+        self.states = "mode"
+        
+    def button_confirm(self):
+        self.states = "end"
+
 
     submit = fields.Binary(string="Submit you file here")
     reference = fields.Reference(

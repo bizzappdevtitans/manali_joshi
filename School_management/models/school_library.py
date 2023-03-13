@@ -29,6 +29,8 @@ class SchoolLibrary(models.Model):
         ],
         string="Details",
     )
+    # payfees_ids = fields.One2many("school.fees","stui_id","Details")
+
 
 
     _sql_constraints = [

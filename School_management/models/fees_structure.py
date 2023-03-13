@@ -18,6 +18,7 @@ class FeesStructure(models.Model):
             ("12", "12th Science"),
         ]
     )
+    pay = fields.Char(string="Paid")
 # compute the total fees
     api.depends("academicf", "tut", "can", "transpo")
 

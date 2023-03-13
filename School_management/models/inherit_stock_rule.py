@@ -16,3 +16,5 @@ class StockRule(models.Model):
     #     values = values[0]
     #     vals['pur_order'] = values['supplier'].purchase_requisition_id.pur_order
     #     return vals
+
+

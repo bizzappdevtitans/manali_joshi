@@ -16,6 +16,21 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+ <!-- Server Action created for admission Status -->
+    <record id="action_mark_as_confirmed" model="ir.actions.server">
+        <field name="name">Mark As Confirmed</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_school_admission"/>
+        <field name="binding_model_id" ref="model_school_admission"/>
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+              if record.state == "mode":
+                record.button_confirm()
+            </field>
+        <field name="binding_view_types">list</field>
+    </record>
+
  <!-- Action created for students result -->
    
     <record id="action_result1_students" model="ir.actions.act_window">
@@ -91,6 +106,21 @@
         <field name="name">Assignment Submission</field>
         <field name="res_model">assignment.submit</field>
         <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Server Action created for assigntment submission -->
+    <record id="action_mark_as_done" model="ir.actions.server">
+        <field name="name">Mark As Done</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_assignment_submit"/>
+        <field name="binding_model_id" ref="model_assignment_submit"/>
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+              if record.states == "mode":
+                record.button_confirm()
+            </field>
+        <field name="binding_view_types">list</field>
     </record>
 
 <!-- Action created for exam calendar  -->
@@ -196,6 +226,7 @@
                     <group col="3">
                         <field name="photo" widget="image" width="70px" height="70px"/>
                          <field name="result_ids" />
+
                     </group>
                     <button name="action_browse" type="object" string="Browse Search">
                     </button>
@@ -260,6 +291,7 @@
                 <field name="tecname" />
                 <field name="email" widget="email"/>
                 <field name="qualification"/>
+                <field name="assign"/>
             </tree>
         </field>
     </record>
@@ -313,6 +345,10 @@
         <field name="model">school.teachers</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="%(action_view_teacher_wizard)d" title="Teacher Level" type="action"
+                        string="Teacher Level"/>
+                    </header>
                 <sheet>
                      <group string= "Teacher's Details">
                         <group col="1">
@@ -543,7 +579,8 @@
                 <field name="date"/>
                 <field name="assigned_id1"/>
                 <field name="assigned_id2"/>
-                <field name="submit" widget="file"/> 
+                <field name="submit" widget="file"/>
+                <field name="states"/> 
 
             </tree>
         </field>
@@ -556,7 +593,8 @@
             <form>
                 <header>
 
-                    <button name="button_in_progress" class="oe_highlight" state="start" string="Select State" type="object" help="In Progress state"/>
+                    <button name="button_in_progress" class="oe_highlight" state="start" string="In Progress" type="object" help="In Progress state"/>
+                    <button name="button_confirm" class="oe_highlight" state="start" string="Completed" type="object" help="Completed"/>
                     <field name="states" widget="statusbar" statusbar_visible="start,mode,end"/>
 
 
@@ -626,6 +664,7 @@
                             <field name="period"/>
                             <field name="time1"/>
                             <field name="time2"/>
+                            <!-- <field name="payfees_ids"/> -->
                         </group>
                     </group>
                 </sheet>
@@ -756,7 +795,8 @@
         <field name="arch" type="xml">
             <form>
                  <header>
-                    <button name="button_in_progress" class="oe_highlight" state="end" string="Select State" type="object" help="Verifying documents"/>
+                    <button name="button_in_progress" class="oe_highlight" state="mode" string="Verify Documents" type="object" help="Verifying documents"/>
+                    <button name="button_confirm" class="oe_highlight" state="end" string="Confirmed" type="object" help="Verifed documents"/>
                     <field name="state" widget="statusbar" statusbar_visible="start,mode,end"/>
                 </header>
                 <sheet> 
@@ -765,7 +805,7 @@
                     </div>
                     <div class="oe_title">
                       <h1>
-                      <field name="reference_no" readonly="1"/>
+                      <field name="reference_no"/>
                 </h1>
              </div>
                     <group string="Admission Form">
@@ -804,6 +844,7 @@
                 <field name="combination"/>
                 <field name="Section"/>
                 <field name="standard"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -833,6 +874,7 @@
                        <field name="description"/>
                        <field name="number"/>
                        <field name="paydate"/>
+
             </group>
          </sheet>
       </form>
@@ -954,6 +996,7 @@
                 <field name="number"/>
                 <field name="paydate"/>
                 <field name="totalfees"/>
+                <field name="pay"/>
             </tree>
         </field>
     </record>

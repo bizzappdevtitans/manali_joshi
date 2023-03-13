@@ -20,7 +20,7 @@ class SchoolTeachers(models.Model):
     phone = fields.Char(string="Teacher Phone")
     address = fields.Text(string="Teacher Address")
     qualification = fields.Char(string="Teacher Qualification")
-
+    assign = fields.Char(string="Assigned Class")
     # Phone Validation
     @api.constrains("phone")
     def _check_phone(self):

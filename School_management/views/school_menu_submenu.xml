@@ -36,7 +36,7 @@
         sequence="2"/>
 
     <menuitem id="assignment_details_menu"
-        name="Assignment"
+        name="Submit Assignment"
         parent="student_details_menu"
         action="action_assignment_submit"
         sequence="3"/>
@@ -74,7 +74,7 @@
         sequence="2"/> 
 
     <menuitem id="assigned_student_details_menu"
-        name="Assignment"
+        name="Create Assignment"
         parent="teacher_details_menu"
         action="action_assignment_details"
         sequence="3"/>
@@ -170,16 +170,19 @@
      <menuitem id="admin_details_menu"
         name="Admin"
         parent="school_menu_root"
-        action="action_school_students"/>
+        action="action_school_students"
+        groups="School_management.school_management_teacher"/>
 
     <menuitem id="Fee_details_menu"
         name="Fee's Structure"
         parent="admin_details_menu"
-        action="action_fees_details"/>
+        action="action_fees_details"
+        groups="School_management.school_management_teacher"/>
 
      <menuitem id="timetable_structure_menu"
         name="TimeTable Structure"
         parent="admin_details_menu"
         action="action_timetable_structure"
+        groups="School_management.school_management_teacher"
         sequence="2"/> 
 </odoo>

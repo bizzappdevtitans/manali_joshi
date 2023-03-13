@@ -17,3 +17,4 @@ School_management.access_timetable_structure,access_timetable_structure,School_m
 School_management.access_about_us,access_about_us,School_management.model_about_us,base.group_user,1,1,1,1
 School_management.access_home_page,access_home_page,School_management.model_home_page,base.group_user,1,1,1,1
 School_management.access_student_wizard,access_student_wizard,School_management.model_student_wizard,base.group_user,1,1,1,1
+School_management.access_teacher_wizard,access_teacher_wizard,School_management.model_teacher_wizard,base.group_user,1,1,1,1

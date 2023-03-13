@@ -70,7 +70,10 @@ class SchoolAdmission(models.Model):
     )
 
     def button_in_progress(self):
-        self.write({"state": "end"})
+        self.state = "mode"
+
+    def button_confirm(self):
+        self.state = "end"
 
     def btn_done(self):
         return {

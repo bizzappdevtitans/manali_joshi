@@ -41,10 +41,15 @@ class SchoolStudents(models.Model):
 
     result_ids = fields.One2many("students.results", "name_id", "Result")
     Total_count = fields.Integer(compute="compute_count")
-
+    
     stui_id = fields.Char(
         string="Student Id", required=True, index=True, copy=False, default="New"
     )
+
+    @api.model
+    def test_cron_job(self):
+        print("Manali")
+
 # Calculate the age by the given dob
     api.depends("birthdate")
 

@@ -16,3 +16,4 @@ class SchoolFees(models.Model):
     _sql_constraints = [
         ("number_unique", "unique (number)", "Slip No already generated...!")
     ]
+
