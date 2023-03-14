@@ -18,7 +18,7 @@
                     <field name="assign"/>
                 </group>
                 <footer>
-                    <button name="set_teacher_level" string="Update Level" class="oe_right oe_highlight"
+                    <button name="set_teacher_level" string="Assign Class" class="oe_right oe_highlight"
                             type="object"/>
                     <button string="Cancel" class="oe_right" special="cancel"/>
                 </footer>

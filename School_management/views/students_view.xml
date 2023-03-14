@@ -217,6 +217,7 @@
                     </group>
                         <group col="2">
                         <field name="birthdate"/>
+                        <field name="birthday_month"/>
                         <field name="age"/>
                         <field name="gender" widget="radio"/>
                         <field name="email" widget="email"/>
@@ -347,7 +348,7 @@
             <form>
                 <header>
                     <button name="%(action_view_teacher_wizard)d" title="Teacher Level" type="action"
-                        string="Teacher Level"/>
+                        string="Assign Class"/>
                     </header>
                 <sheet>
                      <group string= "Teacher's Details">
@@ -1047,5 +1048,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

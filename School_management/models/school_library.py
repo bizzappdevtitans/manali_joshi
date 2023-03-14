@@ -29,9 +29,6 @@ class SchoolLibrary(models.Model):
         ],
         string="Details",
     )
-    # payfees_ids = fields.One2many("school.fees","stui_id","Details")
-
-
 
     _sql_constraints = [
         ("lib_id_unique", "unique (lib_id)", "Student ID is already exists...!")
@@ -43,8 +40,6 @@ class SchoolLibrary(models.Model):
         if not self.category:
             raise UserError("No Category were selected.")
             return True
-
-
 
     # ORM GETNAME
     @api.model

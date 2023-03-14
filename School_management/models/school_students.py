@@ -41,16 +41,43 @@ class SchoolStudents(models.Model):
 
     result_ids = fields.One2many("students.results", "name_id", "Result")
     Total_count = fields.Integer(compute="compute_count")
-    
+
     stui_id = fields.Char(
         string="Student Id", required=True, index=True, copy=False, default="New"
     )
+    birthday_month = fields.Integer(
+        string="Birthday Month",
+        compute="_compute_bm",
+        store=True,
+        index=True,
+        readonly=True,
+    )
+
+    @api.depends("birthdate")
+    def _compute_bm(self):
+        for record in self:
+            if record.birthdate:
+                record.birthday_month = record.birthdate.month
+            else:
+                record.birthday_month = False
 
     @api.model
     def test_cron_job(self):
-        print("Manali")
+        todays_date = datetime.today().date()
+        print("Today's Date", todays_date)
+        today_month = todays_date.month
+        print("Month", today_month)
+        today_day = todays_date.day
+        dob = self.env["school.students"].search([])
+        for students_val in dob:
+            if (
+                students_val.birthdate.month == today_month
+                and students_val.birthdate.day == today_day
+            ):
+                print("Birthday Students")
+                print("Happy Birthday", students_val.name)
 
-# Calculate the age by the given dob
+    # Calculate the age by the given dob
     api.depends("birthdate")
 
     def _compute_age(self):
