@@ -53,6 +53,10 @@ class SchoolStudents(models.Model):
         readonly=True,
     )
 
+    def action_send_email(self):
+        mail_template = self.env.ref("School_management.email_template_student")
+        mail_template.send_mail(self.id, force_send=True)
+
     @api.depends("birthdate")
     def _compute_bm(self):
         for record in self:
@@ -76,6 +80,16 @@ class SchoolStudents(models.Model):
             ):
                 print("Birthday Students")
                 print("Happy Birthday", students_val.name)
+        mail_template = self.env.ref("School_management.email_template_student")
+        mail_template.send_mail(self.id, force_send=True)
+        message = ("Happy Birthday %s") % (students_val.name)
+        channel_id = self.env.ref("mail.channel_all_employees").id
+        channel = self.env["mail.channel"].browse(channel_id)
+        channel.message_post(
+            body=(message),
+            message_type="comment",
+            subtype_xmlid="mail.mt_comment",
+        )
 
     # Calculate the age by the given dob
     api.depends("birthdate")

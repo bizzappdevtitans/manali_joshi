@@ -195,6 +195,7 @@
                 <header>
                     <button name="%(action_view_student_wizard)d" title="Student Level" type="action"
                         string="Student Level"/>
+                     <button name="action_send_email" string="Send by email" type="object"/>
                     </header>
                 <sheet>
                      <div class="oe_button_box" name="button_box">
