@@ -24,7 +24,7 @@ class SchoolParents(models.Model):
         ]
     )
 
-# Email Validation
+    # Email Validation
 
     @api.onchange("email")
     def validate_mail(self):
@@ -35,19 +35,22 @@ class SchoolParents(models.Model):
             )
             if match == None:
                 raise ValidationError("Not a valid E-mail ID")
-                
-# Phone Validation
 
+    # Phone Validation
     @api.constrains("phone")
-    def _check_phones(self):
-        for record in self:
-            if len(record.phone) != 10:
+    def _check_phone(self):
+        for values in self:
+            if values.phone and not str(values.phone).isdigit():
+                raise ValidationError(("Cannot enter Characters"))
+            if len(values.phone) != 10:
                 raise ValidationError("Invalid Number")
 
     @api.constrains("phones")
     def _check_number(self):
-        for record in self:
-            if len(record.phone) != 10:
+        for values in self:
+            if values.phones and not str(values.phones).isdigit():
+                raise ValidationError(("Cannot enter Characters"))
+            if len(values.phones) != 10:
                 raise ValidationError("Invalid Number")
 
     teachname = fields.Many2many("school.teachers", string="Teacher Details")

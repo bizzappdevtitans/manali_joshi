@@ -19,6 +19,12 @@ class SchoolAdmission(models.Model):
     email = fields.Char(string="Email")
     phone = fields.Char(string="Phone")
     address = fields.Text(string="Address")
+    nationality = fields.Many2one('res.country', string='Nationality')
+    state_id = fields.Many2one('res.country.state', string="State")
+    student_blood_group = fields.Selection(
+        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
+         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
+        string='Blood Group')
     gender = fields.Selection(
         [
             ("male", "Male"),
@@ -83,6 +89,7 @@ class SchoolAdmission(models.Model):
                 "type": "rainbow_man",
             }
         }
+
 # Combine First name & last name
     @api.depends("first_name", "last_name")
     def _compute_fields_combination(self):
@@ -115,3 +122,12 @@ class SchoolAdmission(models.Model):
     def create(self, vals):
         vals["reference_no"] = self.env["ir.sequence"].next_by_code("school.admission")
         return super(SchoolAdmission, self).create(vals)
+
+# phone validation
+    @api.constrains("phone")
+    def _check_phone(self):
+        for values in self:
+            if values.phone and not str(values.phone).isdigit():
+                raise ValidationError(("Cannot enter Characters"))
+            if len(values.phone) != 10:
+                raise ValidationError("Invalid Number")

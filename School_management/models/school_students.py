@@ -74,22 +74,19 @@ class SchoolStudents(models.Model):
         today_day = todays_date.day
         dob = self.env["school.students"].search([])
         for students_val in dob:
-            if (
-                students_val.birthdate.month == today_month
-                and students_val.birthdate.day == today_day
-            ):
+            if students_val.birthdate.month == today_month and students_val.birthdate.day == today_day:
                 print("Birthday Students")
                 print("Happy Birthday", students_val.name)
-        mail_template = self.env.ref("School_management.email_template_student")
-        mail_template.send_mail(self.id, force_send=True)
-        message = ("Happy Birthday %s") % (students_val.name)
-        channel_id = self.env.ref("mail.channel_all_employees").id
-        channel = self.env["mail.channel"].browse(channel_id)
-        channel.message_post(
-            body=(message),
-            message_type="comment",
-            subtype_xmlid="mail.mt_comment",
-        )
+                mail_template = self.env.ref("School_management.email_template_student")
+                mail_template.send_mail(self.id, force_send=True)
+                message = ("Happy Birthday %s") % (students_val.name)
+                channel_id = self.env.ref("mail.channel_all_employees").id
+                channel = self.env["mail.channel"].browse(channel_id)
+                channel.message_post(
+                   body=(message),
+                   message_type="comment",
+                   subtype_xmlid="mail.mt_comment",
+                    )
 
     # Calculate the age by the given dob
     api.depends("birthdate")
@@ -155,3 +152,12 @@ class SchoolStudents(models.Model):
     def create(self, vals):
         vals["stui_id"] = self.env["ir.sequence"].next_by_code("school.students")
         return super(SchoolStudents, self).create(vals)
+
+# phone validation
+    @api.constrains("phone")
+    def _check_phone(self):
+        for values in self:
+            if values.phone and not str(values.phone).isdigit():
+                raise ValidationError(("Cannot enter Characters"))
+            if len(values.phone) != 10:
+                raise ValidationError("Invalid Number")

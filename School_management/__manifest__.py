@@ -10,6 +10,7 @@
     "depends": ["mail", "sale", "sale_project","mrp","stock_dropshipping"],
     "data": [
         "data/mail_template.xml",
+        "data/mail_teacher_template.xml",
         "data/ir_sequence_data.xml",
         "data/cron.xml",
         "security/ir.model.access.csv",
