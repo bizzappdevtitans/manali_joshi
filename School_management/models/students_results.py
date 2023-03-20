@@ -40,7 +40,7 @@ class StudentsResult(models.Model):
         for rec in self:
             rec.update(
                 {
-                    "percent": rec.totalmarks / 600,
+                    "percent": rec.totalmarks / 6,
                 }
             )
 

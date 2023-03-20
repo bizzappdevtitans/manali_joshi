@@ -90,6 +90,21 @@ class SchoolAdmission(models.Model):
             }
         }
 
+    def sticky_notification(self):
+        action = self.env.ref('School_management.action_school_admission')
+        notification = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {'title':('Your Admission is Confirmed'),
+                    'message': '%s',
+                    'links': [{
+                        'label': self.combination,
+                        'url': f'#action={action.id}&id={self.combination}&model=school.admission',
+                    }],
+        }
+        }
+        return notification
+
 # Combine First name & last name
     @api.depends("first_name", "last_name")
     def _compute_fields_combination(self):

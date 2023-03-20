@@ -10,3 +10,5 @@ class SaleDelivery(models.Model):
         ]
     )
     pur_order = fields.Char(string="Purchase Order")
+    # weight_ok = fields.Boolean(string="Weight Done")
+    weight = fields.Float(string="Weight")

@@ -28,6 +28,12 @@
         	<xpath expr="//notebook/page/field[@name='order_line'] /tree/field[@name='product_id']" position="before">
         		<field name="saleline"/>
         	</xpath>
+          <xpath expr="//notebook/page/field[@name='order_line'] /tree/field[@name='product_uom']" position="after">
+            <field name="weight_ok"/>
+          </xpath>
+          <xpath expr="//notebook/page/field[@name='order_line'] /tree/field[@name='weight_ok']" position="after">
+            <field name="weight"/>
+          </xpath>
         </field>
     </record>
 
@@ -45,6 +51,9 @@
           </xpath>
           <xpath expr="//field[@name='delivery']" position="before">
             <field name="pur_order"/>
+          </xpath>
+          <xpath expr="//notebook/page[@name='operations']/field[@name='move_ids_without_package'] /tree/field[@name='product_uom_qty']" position="after">
+            <field name="weight"/>
           </xpath>
         </field>
       </record>
@@ -116,5 +125,34 @@
           </xpath>
         </field>
       </record>
+
+<!--Product view inherit -->
+
+      <record id="product_done_inherit" model="ir.ui.view">
+        <field name="name">product.inherit.view.custom</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='sale_ok']" position="before">
+            <field name="weight_ok"/>
+            <label for="weight_ok">Weight Done</label>
+          </xpath>
+        </field>
+      </record> 
+
+
+<!--Product Template view inherit -->
+
+      <record id="product_template_inherit" model="ir.ui.view">
+        <field name="name">product.template.inherit.view.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='sale_ok']" position="before">
+            <field name="weight_ok"/>
+            <label for="weight_ok">Weight Done</label>
+          </xpath>
+        </field>
+      </record> 
 </odoo>
 

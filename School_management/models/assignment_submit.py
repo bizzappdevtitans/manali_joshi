@@ -40,6 +40,21 @@ class AssignmentSubmit(models.Model):
     def button_confirm(self):
         self.states = "end"
 
+    def sticky_notification(self):
+        action = self.env.ref('School_management.action_assignment_submit')
+        notification = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {'title':('Your Assignment has been submitted'),
+                    'message': '%s',
+                    'links': [{
+                        'label': self.assigned_id2.name,
+                        'url': f'#action={action.id}&id={self.assigned_id2.id}&model=assignment.submit',
+                    }],
+        }
+        }
+        return notification
+
 
     submit = fields.Binary(string="Submit you file here")
     reference = fields.Reference(

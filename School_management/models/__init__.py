@@ -24,3 +24,4 @@ from . import inherit_project
 from . import inherit_purchase
 from . import inherit_manufracture
 from . import inherit_stock_rule
+from . import inherit_product

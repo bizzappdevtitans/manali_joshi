@@ -34,6 +34,12 @@ class SchoolLibrary(models.Model):
         ("lib_id_unique", "unique (lib_id)", "Student ID is already exists...!")
     ]
 
+    def action_url(self):
+        return {"type": "ir.actions.act_url", 
+                "target": "self", 
+                "url": 'https://openlibrary.org/',
+                }
+
     @api.constrains("category")
     def button_send(self):
         self.ensure_one()

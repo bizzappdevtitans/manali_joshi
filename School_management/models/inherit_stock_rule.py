@@ -11,6 +11,8 @@ class StockRule(models.Model):
       vals["mrp_order"] = values.get('mrp_order')
       return vals
 
+  
+
     # def _prepare_purchase_order(self, company_id, origins, values):
     #     vals = super(StockRule, self)._prepare_purchase_order(company_id,origins,values)
     #     values = values[0]

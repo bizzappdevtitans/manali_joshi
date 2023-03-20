@@ -395,7 +395,7 @@
             <tree>
 
                 <field name="name_id"/>
-                <field name="percent" widget="percentage"/>
+                <field name="percent" widget="percentpie"/>
                 <field name="eligible" widget="boolean_toggle"/>
                 <field name="remarks" widget="emoji_char"/>
 
@@ -417,7 +417,7 @@
                 <field name="chem"/>
                 <field name="bio"/>
                 <field name="totalmarks"/>
-                <field name="percent" widget="percentage"/>
+                <field name="percent"/>
             </graph>
         </field>
     </record>
@@ -445,7 +445,7 @@
                    </group>
                        <group col="2">
                        <field name="totalmarks"/>
-                       <field name="percent" widget="percentage"/>
+                       <field name="percent"/>
                        <field name="eligible" widget="boolean_toggle"/>
                        <field name="remarks" widget="emoji_char"/>
                    </group>
@@ -579,7 +579,7 @@
         <field name="name">assignment.submit.tree</field>
         <field name="model">assignment.submit</field>
         <field name="arch" type="xml">
-            <tree> 
+            <tree decoration-info="states == 'start'" decoration-success="states == 'end'" decoration-warning="states == 'mode'"> 
             
                 <field name="date"/>
                 <field name="assigned_id1"/>
@@ -617,6 +617,7 @@
                         <group>
                         <field name="submit" widget="file"/>
                         <field name="reference"/>
+                        <button name="sticky_notification" class="oe_highlight" string="Submit" type="object"/>
                     </group>
 
                         
@@ -652,6 +653,9 @@
         <field name="model">school.library</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_url" class="oe_highlight" string="Open URL" type="object"  icon="fa-bookmark"/>
+                </header>
                 <sheet>
                     <group string="Library Form">
                         <group col="1">
@@ -837,6 +841,7 @@
                         <field name="photo" widget="image"/>    
                     </group>
                     <button name="btn_done" string="Click Here" type="object" style="background:#FFC7F1" width="80px"/>
+                    <button name="sticky_notification" class="oe_highlight" string="Submit" type="object"/>
                  </group>
                 </sheet>
             </form>
@@ -847,7 +852,7 @@
         <field name="name">school.admission.tree</field>
         <field name="model">school.admission</field>
         <field name="arch" type="xml">
-            <tree> 
+            <tree decoration-info="state == 'start'" decoration-success="state == 'end'"> 
                 <field name="reference_no" readonly="1" decoration-bf="1"/>
                 <field name="combination"/>
                 <field name="Section"/>
