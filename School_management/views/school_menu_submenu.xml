@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+ <!-- Top menu item --> 
+
+    <menuitem id="school_menu_root"
+        name="School Management"
+        action="action_home_page"/>
+
+    <menuitem id="school_menu_add"
+        name="Admission"
+        parent="school_menu_root"
+        action="action_school_admission"
+        sequence="1"/>
+
+<!-- Student menu -->
+
+    <menuitem id="student_details_menu"
+        name="Student"
+        parent="school_menu_root"
+        action="action_school_students"
+        sequence="2"/>
+
+
+    <menuitem id="add_details_menu"
+        name="Students Profile"
+        parent="student_details_menu"
+        action="action_school_students"
+        sequence="1"/>
+
+
+    <menuitem id="result_details_menu"
+        name="Result"
+        parent="student_details_menu"
+        action="action_result1_students"
+        sequence="2"/>
+
+    <menuitem id="assignment_details_menu"
+        name="Submit Assignment"
+        parent="student_details_menu"
+        action="action_assignment_submit"
+        sequence="3"/>
+
+    <menuitem id="library_details_menu"
+        name="Library"
+        parent="student_details_menu"
+        action="action_detail_library"
+        sequence="4"/>
+
+    <menuitem id="timetable_details_menu"
+        name="TimeTable"
+        parent="student_details_menu"
+        action="action_timetable_details"
+        sequence="5"/>
+
+
+<!-- Teacher menu -->
+
+    <menuitem id="teacher_details_menu"
+        name="Faculty"
+        parent="school_menu_root"
+        action="action_school_teachers"/>
+
+    <menuitem id="teacher_form_details_menu"
+        name="Teacher Profile"
+        parent="teacher_details_menu"
+        action="action_school_teachers"
+        sequence="1"/>  
+
+    <menuitem id="stu_form_details_menu"
+        name="Student Details"
+        parent="teacher_details_menu"
+        action="action_school_students"
+        sequence="2"/> 
+
+    <menuitem id="assigned_student_details_menu"
+        name="Create Assignment"
+        parent="teacher_details_menu"
+        action="action_assignment_details"
+        sequence="3"/>
+
+
+    <menuitem id="record_student_result_menu"
+        name="Student Result Record"
+        parent="teacher_details_menu"
+        action="action_result1_students"
+        sequence="4"/>
+
+<!-- Attendance menu     -->
+
+    <menuitem id="Attendance_details_menu"
+        name="Attendance"
+        parent="school_menu_root"
+        action="action_attendance_detail"/>
+
+
+    <menuitem id="Attendee3_details_menu"
+        name="View Attendance Record"
+        parent="Attendance_details_menu"
+        action="action_attendance_detail"/>
+
+<!-- Academic menu -->
+
+    <menuitem id="Academics_details_menu"
+        name="Academics"
+        parent="school_menu_root"
+        action="action_school_students"/>
+
+    <menuitem id="Academic_profile_menu"
+        name="Academic School Events"
+        parent="Academics_details_menu"
+        action="action_holidays_detail"
+        sequence="2"/>
+
+    <menuitem id="Academic_profile2_menu"
+        name="Academic Calendar"
+        parent="Academics_details_menu"
+        action="action_holidays_detail"
+        sequence="1"/>
+
+<!-- exam menu -->
+    <menuitem id="Exam_details_menu"
+        name="Exam Management"
+        parent="school_menu_root"
+        action="action_school_students"/>
+
+    <menuitem id="Exam_schdule_menu"
+        name="Exam Schedule"
+        parent="Exam_details_menu"
+        action="action_exam_detail"/>
+
+<!-- Fees menu -->
+    
+     <menuitem id="fees_structure_menu"
+        name="Fee's Management"
+        parent="school_menu_root"
+        action="action_fees_structure"/>
+
+
+<!-- Parents menu -->
+
+    <menuitem id="parents_details_menu"
+        name="Parents"
+        parent="school_menu_root"
+        action="action_list_parents"/>
+
+
+    <menuitem id="parents_details_lis"
+        name="Parents Details"
+        parent="parents_details_menu"
+        action="action_list_parents"
+        sequence="1"/>
+
+     <menuitem id="parents_details_view"
+        name="Student Result"
+        parent="parents_details_menu"
+        action="action_result1_students"
+        sequence="2"/>
+
+
+<!-- about us -->
+
+    <menuitem id="About_details_menu"
+        name="About Us"
+        parent="school_menu_root"
+        action="action_about_us"/>
+
+<!-- admin us -->
+
+     <menuitem id="admin_details_menu"
+        name="Admin"
+        parent="school_menu_root"
+        action="action_school_students"
+        groups="School_management.school_management_teacher"/>
+
+    <menuitem id="Fee_details_menu"
+        name="Fee's Structure"
+        parent="admin_details_menu"
+        action="action_fees_details"
+        groups="School_management.school_management_teacher"/>
+
+     <menuitem id="timetable_structure_menu"
+        name="TimeTable Structure"
+        parent="admin_details_menu"
+        action="action_timetable_structure"
+        groups="School_management.school_management_teacher"
+        sequence="2"/> 
+</odoo>

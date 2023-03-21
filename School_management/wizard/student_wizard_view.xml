@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   
+   <record id="action_view_student_wizard" model="ir.actions.act_window">
+        <field name="name">Student Level</field>
+        <field name="res_model">student.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record> 
+
+    <record id="student_wizard_view" model="ir.ui.view">
+        <field name="name">Student Marks View</field>
+        <field name="model">student.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name_ids" widget="many2many_list"/>
+                    <field name="level"/>
+                </group>
+                <footer>
+                    <button name="set_student_level" string="Update Level" class="oe_right oe_highlight"
+                            type="object"/>
+                    <button string="Cancel" class="oe_right" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- Action created for students -->
+
+    <record id="action_school_students" model="ir.actions.act_window">
+        <field name="name">Student Details</field>
+        <field name="res_model">school.students</field>
+        <field name="view_mode">tree,form,kanban,graph,activity,search</field>
+    </record>
+
+ <!-- Action created for admission -->
+
+    <record id="action_school_admission" model="ir.actions.act_window">
+        <field name="name">School Admission</field>
+        <field name="res_model">school.admission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+ <!-- Server Action created for admission Status -->
+    <record id="action_mark_as_confirmed" model="ir.actions.server">
+        <field name="name">Mark As Confirmed</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_school_admission"/>
+        <field name="binding_model_id" ref="model_school_admission"/>
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+              if record.state == "mode":
+                record.button_confirm()
+            </field>
+        <field name="binding_view_types">list</field>
+    </record>
+
+ <!-- Action created for students result -->
+   
+    <record id="action_result1_students" model="ir.actions.act_window">
+        <field name="name">Student Result</field>
+        <field name="res_model">students.results</field>
+        <field name="view_mode">tree,form,kanban,graph</field>
+    </record>
+
+  
+ --><!-- Action created for teachers -->
+
+    <record id="action_school_teachers" model="ir.actions.act_window">
+        <field name="name">School teachers</field>
+        <field name="res_model">school.teachers</field>
+        <field name="view_mode">tree,form,kanban,graph,search</field>
+    </record>
+
+
+
+<!-- Action created for Attendance -->
+
+    <record id="action_attendance_detail" model="ir.actions.act_window">
+        <field name="name">Attendance details</field>
+        <field name="res_model">school.attendance</field>
+        <field name="view_mode">tree,form,kanban,graph,calendar</field>
+    </record>
+
+
+<!-- Action created for Assignment creation  -->
+
+    <record id="action_assignment_details" model="ir.actions.act_window">
+        <field name="name">Assignment details</field>
+        <field name="res_model">school.assignment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<!-- action created for libarary -->
+
+    <record id="action_detail_library" model="ir.actions.act_window">
+        <field name="name">School library</field>
+        <field name="res_model">school.library</field>
+        <field name="view_mode">tree,form,kanban,pivot</field>
+    </record>
+
+<!-- Action created for Timetable creation  -->
+
+    <record id="action_timetable_details" model="ir.actions.act_window">
+        <field name="name">TimeTable details</field>
+        <field name="res_model">school.timetable</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Action created for parents form-->
+ 
+    <record id="action_list_parents" model="ir.actions.act_window">
+        <field name="name">School Parents</field>
+        <field name="res_model">school.parents</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+<!-- Action created for academic calendar  -->
+
+    <record id="action_holidays_detail" model="ir.actions.act_window">
+        <field name="name">Calendar</field>
+        <field name="res_model">academic.holidays</field>
+        <field name="view_mode">calendar,tree,search</field>
+    </record>
+
+<!-- Action created for Assignment submission -->
+
+    <record id="action_assignment_submit" model="ir.actions.act_window">
+        <field name="name">Assignment Submission</field>
+        <field name="res_model">assignment.submit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Server Action created for assigntment submission -->
+    <record id="action_mark_as_done" model="ir.actions.server">
+        <field name="name">Mark As Done</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_assignment_submit"/>
+        <field name="binding_model_id" ref="model_assignment_submit"/>
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+              if record.states == "mode":
+                record.button_confirm()
+            </field>
+        <field name="binding_view_types">list</field>
+    </record>
+
+<!-- Action created for exam calendar  -->
+
+    <record id="action_exam_detail" model="ir.actions.act_window">
+        <field name="name">Calendar</field>
+        <field name="res_model">exam.timetable</field>
+        <field name="view_mode">calendar,tree</field>
+    </record>
+
+<!-- Action created for About Us  -->
+
+    <record id="action_about_us" model="ir.actions.act_window">
+        <field name="name">About Us</field>
+        <field name="res_model">about.us</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Action created for Fees admin -->
+
+    <record id="action_fees_details" model="ir.actions.act_window">
+        <field name="name">Fees Details</field>
+        <field name="res_model">school.fees</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Action created for Fees management  -->
+
+    <record id="action_fees_structure" model="ir.actions.act_window">
+        <field name="name">Fees Structure</field>
+        <field name="res_model">fees.structure</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!-- Action created for Timetable structure  -->
+
+    <record id="action_timetable_structure" model="ir.actions.act_window">
+        <field name="name">TimeTable Structure</field>
+        <field name="res_model">timetable.structure</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Action created for Home Page  -->
+
+    <record id="action_home_page" model="ir.actions.act_window">
+        <field name="name">Home Page</field>
+        <field name="res_model">home.page</field>
+        <field name="view_mode">form</field>
+    </record>
+
+
+<!-- Students tree view  -->
+    <record id="School_management_tree" model="ir.ui.view">
+        <field name="name">school.students.tree</field>
+        <field name="model">school.students</field>
+        <field name="arch" type="xml">
+            <tree> 
+                <field name="name"/>
+                <field name="stui_id"/>
+                <field name="email" widget="email"/>
+                <field name="level"/>
+                <field name="standard"/>
+            </tree>
+        </field>
+    </record> 
+
+<!-- Students form view  -->
+ <record id="School_student_form" model="ir.ui.view">
+        <field name="name">school.students.form</field>
+        <field name="model">school.students</field>
+        <field name="arch" type="xml"> 
+            <form>
+                <header>
+                    <button name="%(action_view_student_wizard)d" title="Student Level" type="action"
+                        string="Student Level" class="oe_highlight"/>
+                     <button name="action_send_email" string="Send by email" type="object" class="oe_highlight"/>
+                    </header>
+                <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <button name="get_vehicles"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-star icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Eligible</span>
+                                <span class="o_stat_text">Students</span>
+                            </div>
+                 </button>
+             </div>
+                   <group string="Student Personal Details"> 
+                    <group col="1">
+                        <field name="name"/>  
+                        <field name="stui_id"/>
+                        <field name="standard"/>
+                        <field name="Section" widget="radio"/>
+                    </group>
+                        <group col="2">
+                        <field name="birthdate"/>
+                        <field name="birthday_month"/>
+                        <field name="age"/>
+                        <field name="gender" widget="radio"/>
+                        <field name="email" widget="email"/>
+                        <field name="phone" widget="phone"/>
+                        <field name="address"/>
+                    </group>
+                    <group col="3">
+                        <field name="photo" widget="image" width="70px" height="70px"/>
+                         <field name="result_ids" />
+
+                    </group>
+                    <button name="action_browse" type="object" string="Browse Search">
+                    </button>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+ </record> 
+
+<!-- Search view for students -->
+
+ <record id="school_student_search" model="ir.ui.view">
+        <field name="name">school.students.search</field>
+        <field name="model">school.students</field>
+        <field name="arch" type="xml">
+            <search position="inside">
+             <field name="name"/>  
+             <field name="stui_id"/>
+             <field name="standard"/>
+             <field name="Section" widget="radio"/>
+             <filter string="Archived" name="name" domain="[('name', '=',False)]"/>
+             <group expand="0" string="Group By">
+                <filter string="gender" name="gender" context="{'group_by': 'gender'}"/>
+            </group>
+            <searchpanel>
+                <field name="Section" enable_counters="1"/> 
+                <field name="gender" enable_counters="1"/>
+                <field name="standard" enable_counters="1"/>
+            </searchpanel>
+           </search>
+        </field>
+    </record>
+
+<!-- Activity view for students -->
+
+ <record id="activity_student" model="ir.ui.view">
+       <field name="name">school.students.activity</field>
+       <field name="model">school.students</field>
+       <field name="arch" type="xml">
+        <activity string="Applicants">
+            <templates>
+                <div t-name="activity-box">
+                    <div>
+                        <field name="name"/>
+                    </div>
+                </div>
+            </templates>
+        </activity>
+    </field>
+</record>
+
+<!-- Teacher tree view  -->
+    <record id="Teacher_management_tree" model="ir.ui.view">
+        <field name="name">school.teachers.tree</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <tree> 
+                <field name="tecname" />
+                <field name="email" widget="email"/>
+                <field name="qualification"/>
+                <field name="assign"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- kanban view of teacher -->
+
+    <record id="teachers_kanban_view" model="ir.ui.view">
+            <field name="name">school.teachers.kanban</field>
+            <field name="model">school.teachers</field>
+            <field name="arch" type="xml">
+                 <kanban class="o_school_teachers_kanban">
+                    <field name="tecname"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar" t-att-src="kanban_image('school.teachers', 'image_medium',record.photo)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                    <field name="tecname"/>
+                                    </strong>
+                                <div t-if="record.phone.value">
+                                        <t t-esc="record.phone.value"/>
+                                </div>
+                                    <div t-if="record.email.value">
+                                        <t t-esc="record.email.value"/>
+                                </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+<!-- Teacher form view  -->
+
+    <record id="School_teacher_form" model="ir.ui.view">
+        <field name="name">school.teachers.form</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>  
+                    <button name="%(action_view_teacher_wizard)d" title="Teacher Level" type="action"
+                        string="Assign Class" class="oe_highlight"/>
+                    <button name="action_send_email" string="Send by email" type="object" class="oe_highlight"/>
+                    <button name="btn_whatsapp" string="Share in Whatsapp" type="object" icon="fa-whatsapp" class="oe_highlight"/>
+                    </header>
+                <sheet>
+                    <group string= "Teacher's Details">
+                        <group col="1">
+                        <field name="tecname"/>
+                        <field name="birthdate"/>
+                        <field name="age"/>
+                        <field name="gender" widget="radio"/>
+                    </group>
+                    <group col="2">
+                        <field name="email" widget="email"/>
+                        <field name="phone" widget="phone"/>
+                        <field name="address"/>
+                        <field name="qualification"/>
+                    </group>
+                    <group col="3">
+                        <field name="photo" widget="image"/>
+                    </group>
+                </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+<!-- Search view for teachers -->
+ <record id="school_teacher_search" model="ir.ui.view">
+        <field name="name">school.teachers.search</field>
+        <field name="model">school.teachers</field>
+        <field name="arch" type="xml">
+                <search position="inside">
+                <searchpanel> 
+                <field name="gender" enable_counters="1"/>
+            </searchpanel>
+           </search>
+        </field>
+    </record>
+
+<!-- Students result tree view  -->
+
+    <record id="Result_management_tree" model="ir.ui.view">
+        <field name="name">students.results.tree</field>
+        <field name="model">students.results</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="name_id"/>
+                <field name="percent" widget="percentpie"/>
+                <field name="eligible" widget="boolean_toggle"/>
+                <field name="remarks" widget="emoji_char"/>
+
+            </tree>
+        </field>
+    </record>
+
+<!-- Students result graph view  -->
+      <record id="Result_management_graph" model="ir.ui.view">
+        <field name="name">students.results.tree</field>
+        <field name="model">students.results</field>
+        <field name="arch" type="xml">
+            <graph string="Marks Details">
+                <field name="name_id"/>
+                <field name="english"/>
+                <field name="maths"/>
+                <field name="comp"/>
+                <field name="physics"/>
+                <field name="chem"/>
+                <field name="bio"/>
+                <field name="totalmarks"/>
+                <field name="percent"/>
+            </graph>
+        </field>
+    </record>
+
+
+
+<!-- Students result form view  -->
+    <record id="Result_management_form" model="ir.ui.view">
+        <field name="name">students.results.form</field>
+        <field name="model">students.results</field>
+        <field name="arch" type="xml">
+        <widget name="web_ribbon" text="Result" bg_colour="bg-success"/>
+            <form>
+                <sheet>
+                    <group string="Marks Details">
+                       <group col="1">
+                       <field name="name_id"/>
+                       <field name="stui_id"/>
+                       <field name="english"/>
+                       <field name="maths"/>
+                       <field name="comp"/>
+                       <field name="physics"/>
+                       <field name="chem"/>
+                       <field name="bio"/>
+                   </group>
+                       <group col="2">
+                       <field name="totalmarks"/>
+                       <field name="percent"/>
+                       <field name="eligible" widget="boolean_toggle"/>
+                       <field name="remarks" widget="emoji_char"/>
+                   </group>
+                     </group>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+ <!-- Attendance tree view  --> 
+
+    <record id="Teacher_attendance_tree" model="ir.ui.view">
+        <field name="name">school.attendance.tree</field>
+        <field name="model">school.attendance</field>
+        <field name="arch" type="xml">
+            <tree> 
+                <field name="names_id"/>
+                <field name="date"/>
+                <field name="Select"/>
+
+            </tree>
+        </field>
+    </record> 
+
+
+<!-- Attendance calendar view  --> 
+
+    <record id="school_attendance_calender" model="ir.ui.view">
+        <field name="name">school.attendance.calendar</field>
+        <field name="model">school.attendance</field>
+        <field name="arch" type="xml">
+            <calendar date_start="date" string="Attendance" mode="month" color="names_id" event_limit="5"
+                 hide_time="true" js_class="project_calendar" event_open_popup="true" quick_add="false">
+                <field name="date"/>
+                <field name="names_id"/>
+                <field name="Class" widget="radio"/>
+                <field name="colour" widget="color_picker"/>
+                <field name="Select"/>
+            </calendar>
+        </field>
+    </record> 
+
+<!-- Attendance form view  --> 
+    <record id="School_attendance_form" model="ir.ui.view">
+        <field name="name">school.attendance.form</field>
+        <field name="model">school.attendance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Attendance Details">
+                        <group>
+                        <field name="date"/>
+                        <field name="names_id"/>
+                    </group>
+                        <group>
+                        <field name="Class" widget="radio"/>
+                        <field name="colour" widget="color_picker"/>
+                        <field name="Select"/>
+                        <field name="referencepro"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- Search view for Attendance -->
+ <record id="school_attendance_search" model="ir.ui.view">
+        <field name="name">school.attendance.search</field>
+        <field name="model">school.attendance</field>
+        <field name="arch" type="xml">
+            <search position="inside">
+            <searchpanel>
+                <field name="Class" enable_counters="1" icon="fa fa-user"/>
+                <field name="Select" enable_counters="1" icon="fa fa-user"/>
+            </searchpanel>
+           </search>
+        </field>
+    </record>
+
+<!-- Assignment tree view -->
+
+    <record id="assignment_tree" model="ir.ui.view">
+        <field name="name">school.assignment.tree</field>
+        <field name="model">school.assignment</field>
+        <field name="arch" type="xml">
+            <tree> 
+            
+                <field name="date"/>
+                <field name="assigned1_id"/>
+                <field name="assigned2_id"/>
+                <field name="subject"/>
+                <field name="deadline"/>
+                <field name="desc"/>
+
+            </tree>
+        </field>
+    </record>
+    
+<!-- Assignment form view -->
+    <record id="School_assignment_form" model="ir.ui.view">
+        <field name="name">school.assignment.form</field>
+        <field name="model">school.assignment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Assignment Details">
+                        <group>
+                        <field name="date"/>
+                        <field name="assigned1_id"/>
+                        <field name="assigned2_id"/>
+                        <field name="Type" widget="radio"/>
+                        <field name="subject"/>
+                        <field name="deadline"/>
+                    </group>
+                        <group>
+                        <field name="desc"/>
+                    </group>
+                        
+                     </group>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+<!-- Assignment submit tree view -->
+    <record id="Teacher_assignment_tree" model="ir.ui.view">
+        <field name="name">assignment.submit.tree</field>
+        <field name="model">assignment.submit</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="states == 'start'" decoration-success="states == 'end'" decoration-warning="states == 'mode'"> 
+            
+                <field name="date"/>
+                <field name="assigned_id1"/>
+                <field name="assigned_id2"/>
+                <field name="submit" widget="file"/>
+                <field name="states"/> 
+
+            </tree>
+        </field>
+    </record>
+<!-- Assignment submit form view -->
+    <record id="Submit_assignment_form" model="ir.ui.view">
+        <field name="name">assignment.submit.form</field>
+        <field name="model">assignment.submit</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                    <button name="button_in_progress" class="oe_highlight" state="start" string="In Progress" type="object" help="In Progress state"/>
+                    <button name="button_confirm" class="oe_highlight" state="start" string="Completed" type="object" help="Completed"/>
+                    <field name="states" widget="statusbar" statusbar_visible="start,mode,end"/>
+
+
+                </header>
+                <sheet>
+                    <group string="Assignment Details">
+                        <group>
+                        <field name="date"/>
+                        <field name="assigned_id1"/>
+                        <field name="assigned_id2"/>
+                        <field name="Type" widget="radio"/>
+                        <field name="subject"/>
+                        <field name="deadline"/>
+                    </group>
+                        <group>
+                        <field name="submit" widget="file"/>
+                        <field name="reference"/>
+                        <button name="sticky_notification" class="oe_highlight" string="Submit" type="object"/>
+                    </group>
+
+                        
+                     </group>
+                     <notebook>
+                        <page string="Description">
+                        <field name="desc"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- Tree view for Library -->
+
+    <record id="School_library_tree" model="ir.ui.view">
+        <field name="name">school.library.tree</field>
+        <field name="model">school.library</field>
+        <field name="arch" type="xml">
+            <tree>
+                   <field name="references"/>
+                   <field name="lib_id"/>
+                   <field name="time1"/>
+                   <field name="time2"/>
+            </tree>
+        </field>
+    </record> 
+
+<!-- Form view of Library -->
+
+     <record id="School_library_form" model="ir.ui.view">
+        <field name="name">school.library.form</field>
+        <field name="model">school.library</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_url" class="oe_highlight" string="Open URL" type="object"  icon="fa-bookmark"/>
+                </header>
+                <sheet>
+                    <group string="Library Form">
+                        <group col="1">
+                        <field name="lib_id"/>
+                        <field name="subject"/>
+                        <field name="references"/>
+                        
+                    </group>
+                        <group col="2">
+                        <field name="category" widget="radio"/>
+                        <field name="items"/>
+                        <field name="quantity"/>
+                    </group>
+                        <group string= "Book Issue Detail" col="3">
+                            <field name="period"/>
+                            <field name="time1"/>
+                            <field name="time2"/>
+                            <!-- <field name="payfees_ids"/> -->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- Form view for parents -->
+   
+    <record id="School_parents_form" model="ir.ui.view">
+        <field name="name">school.parents.form</field>
+        <field name="model">school.parents</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="get_teachers"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Teacher's</span>
+                                <span class="o_stat_text">Details</span>
+                            </div>
+                        </button>
+                    </div>
+                        <!-- <field name="Teacher_count" widget="statinfo"/> -->
+                    <group string="Parents Details">
+                       <group col="1">
+                       <field name="name"/>
+                       <field name="names"/>
+                       <field name="parentof_id"/>
+                       <field name="email" widget="email"/>
+                       <field name="phone" widget="phone"/>
+                       <field name="phones" widget="phone"/>
+                       <field name="address"/>
+                   </group>
+                       <group col="2">
+                       <field name="qualification"/>
+                       <field name="qualifications"/>
+                       <field name="Range" widget="radio"/>
+                   </group>
+                      <group col="3">
+                        <field name="teachname"/>
+                       <field name="Teacher_count" invisible='1'/>
+                   </group>
+                  </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- Tree view for parents -->
+
+    <record id="School_parents_tree" model="ir.ui.view">
+        <field name="name">school.parents.tree</field>
+        <field name="model">school.parents</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="names"/>
+                <field name="parentof_id"/>
+            </tree>
+        </field>
+    </record>
+<!-- tree view of holiday -->
+    <record id="view_holiday_tree" model="ir.ui.view">
+    <field name="name">academic.holidays.tree</field>
+    <field name="model">academic.holidays</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="date"/>
+            <field name="date_day"/>
+            <field name="year"/>
+            <field name="Type"/>
+        </tree>
+    </field>
+</record>
+
+<!-- Calendar view for academic calendar -->
+
+    <record id="view_holiday_new_calendar_inherit" model="ir.ui.view">
+    <field name="name">academic.holidays.calendar</field>
+    <field name="model">academic.holidays</field>
+    <field name="arch" type="xml">
+            <calendar date_start="date" date_stop="date" string="Holidays" mode="month" color="name" event_limit="50"
+                 hide_time="true" js_class="project_calendar" event_open_popup="true" quick_add="false">
+                <field name="name"/>
+                <field name="Type" widget="radio"/>
+            </calendar>
+    </field>
+</record>
+
+<!-- Search view for academic calendar -->
+
+    <record id="view_holiday_new_search" model="ir.ui.view">
+    <field name="name">academic.holidays.search</field>
+    <field name="model">academic.holidays</field>
+    <field name="arch" type="xml">
+        <search position="inside">
+            <searchpanel>
+                <field name="Type" enable_counters="1" icon="fa fa-user"/>
+            </searchpanel>
+           </search>
+        </field>
+    </record>
+
+<!-- Calendar view for Exam calendar -->
+
+    <record id="view_exam_new_calendar_inherit" model="ir.ui.view">
+    <field name="name">exam.timetable.calendar</field>
+    <field name="model">exam.timetable</field>
+    <field name="arch" type="xml">
+        <calendar date_start="date" date_stop="date" string="Exam Schedule" mode="month" color="name" event_limit="50"
+                 hide_time="true" js_class="project_calendar" event_open_popup="true" quick_add="false">
+                <field name="name"/>
+                <field name="Type" widget="radio"/>
+            </calendar>
+    </field>
+</record>
+
+<!-- Admission form view  -->
+
+    <record id="School_admission_form" model="ir.ui.view">
+        <field name="name">school.admission.form</field>
+        <field name="model">school.admission</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+                    <button name="button_in_progress" class="oe_highlight" state="mode" string="Verify Documents" type="object" help="Verifying documents"/>
+                    <button name="button_confirm" class="oe_highlight" state="end" string="Confirmed" type="object" help="Verifed documents"/>
+                    <field name="state" widget="statusbar" statusbar_visible="start,mode,end"/>
+                </header>
+                <sheet> 
+                    <div class="text-right">
+                    <field name="image" widget="image"  options='{"size": [120, 120]}'/>
+                    </div>
+                    <div class="oe_title">
+                      <h1>
+                      <field name="reference_no"/>
+                </h1>
+             </div>
+                    <group string="Admission Form">
+                    <group string="Personal Details">
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="combination"/>
+                        <field name="birth"/>
+                        <field name="age"/>
+                        <field name="student_blood_group"/>
+                        <field name="gender" widget="radio"/>
+                        <field name="email" widget="email"/>
+                        <field name="phone" widget="phone"/>
+                        <field name="address"/>
+                        <field name="nationality"/>
+                        <field name="state_id"/>
+                    </group>
+                    <group string="School Details">
+                        <field name="Section" widget="radio"/>
+                        <field name="science" attrs="{'invisible':[('commerce', '!=', False)]}"/>
+                        <field name="commerce" attrs="{'invisible':[('science', '!=', False)]}"/>
+                        <field name="standard"/>
+                        <field name="doc"/>
+                        <field name="photo" widget="image"/>    
+                    </group>
+                    <button name="btn_done" string="Click Here" type="object" style="background:#FFC7F1" width="80px"/>
+                    <button name="sticky_notification" class="oe_highlight" string="Submit" type="object"/>
+                 </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- Admission tree view  -->
+    <record id="School_admission_tree" model="ir.ui.view">
+        <field name="name">school.admission.tree</field>
+        <field name="model">school.admission</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'start'" decoration-success="state == 'end'"> 
+                <field name="reference_no" readonly="1" decoration-bf="1"/>
+                <field name="combination"/>
+                <field name="Section"/>
+                <field name="standard"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Search view for Admission -->
+ <record id="school_admission_search" model="ir.ui.view">
+        <field name="name">school.admission.search</field>
+        <field name="model">school.admission</field>
+        <field name="arch" type="xml">
+            <search position="inside">
+            <searchpanel>
+                <field name="Section" enable_counters="1" icon="fa fa-user"/>
+                <field name="standard" enable_counters="1" icon="fa fa-user"/>
+            </searchpanel>
+           </search>
+        </field>
+    </record>
+<!-- Form view for fees admin -->
+ <record id="School_fees_form" model="ir.ui.view">
+        <field name="name">school.fees.form</field>
+        <field name="model">school.fees</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Fees Details">
+                       <field name="stui_id"/>
+                       <field name="description"/>
+                       <field name="number"/>
+                       <field name="paydate"/>
+
+            </group>
+         </sheet>
+      </form>
+    </field>
+</record>
+
+<!-- Fees tree view admin -->
+    <record id="School_fees_tree" model="ir.ui.view">
+        <field name="name">school.fees.tree</field>
+        <field name="model">school.fees</field>
+        <field name="arch" type="xml">
+            <tree>
+               <field name="stui_id"/>
+               <field name="number"/>
+               <field name="paydate"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- timetable form view -->
+
+    <record id="School_Timetable_form" model="ir.ui.view">
+        <field name="name">school.timetable.form</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="TimeTable">
+                        <group col="1">
+                        <field name="Section" widget="radio"/>
+                        <field name="acayear"/>
+                        <field name="datet"/>
+                        <field name="standard"/>
+                    </group>
+                </group> 
+                <notebook>
+                        <page string="TimeTable Details">
+                        <field name="timet_ids"/> 
+                        </page>
+                    </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+  
+<!-- timetable tree view -->
+     <record id="School_Timetable_tree" model="ir.ui.view">
+        <field name="name">school.timetable.tree</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="Section"/>
+                <field name="acayear"/>
+                <field name="datet"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- timetable structure form view -->
+  <record id="Timetable_structure_form" model="ir.ui.view">
+        <field name="name">timetable.structure.form</field>
+        <field name="model">timetable.structure</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="TimeTable">
+                        <group col="1">
+                        <field name="week"/>
+                        <field name="tename_id"/>
+                        <field name="sub"/>
+                        <field name="star"/>
+                        <field name="end"/>
+                    </group>
+                </group> 
+            </sheet>
+        </form>
+    </field>
+</record> 
+<!-- time table structure tree view   -->
+  <record id="Timetable_structure_tree" model="ir.ui.view">
+        <field name="name">timetable.structure.tree</field>
+        <field name="model">timetable.structure</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="week"/>
+                <field name="tename_id"/>
+                <field name="sub"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Form view for fees Management -->
+ <record id="Structure_fees_form" model="ir.ui.view">
+        <field name="name">fees.structure.form</field>
+        <field name="model">fees.structure</field>
+        <field name="inherit_id" ref="School_management.School_fees_form"/>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Fees Structure Yearly">
+                       <field name="standard" widget="radio"/>
+                       <field name="academicf" default="50000"/>
+                       <field name="tut" default="5000"/>
+                       <field name="can" default="5000"/>
+                       <field name="transpo" default="10000"/>
+                      <field name="totalfees" default="70000"/>
+            </group>
+         </sheet>
+      </form>
+    </field>
+</record> 
+<!-- fees management tree view -->
+ <record id="Structure_fees_tree" model="ir.ui.view">
+        <field name="name">fees.structure.tree</field>
+        <field name="model">fees.structure</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="stui_id"/>
+                <field name="number"/>
+                <field name="paydate"/>
+                <field name="totalfees"/>
+                <field name="pay"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Form view for about us-->
+ <record id="School_aboutus_form" model="ir.ui.view">
+        <field name="name">about.us.form</field>
+        <field name="model">about.us</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Our School">
+                        <p>
+                        <div class="text-center">
+                        <field name="description" widget="html"/>
+                        </div>
+                       </p>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- tree view for about us -->
+   <record id="School_aboutus_tree" model="ir.ui.view">
+        <field name="name">about.us.tree</field>
+        <field name="model">about.us</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="description" widget="html"/>
+             </tree>
+         </field>
+     </record> 
+
+<!-- Form view for Home Page-->
+ <record id="School_homepage_form" model="ir.ui.view">
+        <field name="name">home.page.form</field>
+        <field name="model">home.page</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <div class="text-center">
+                        <img src="/School_management/static/Homepage/hand-drawn-realistic-back-school-wallpaper_23-2148583268.avif" style="height:20%;width:100%;" alt="Home Page" widget="image"/>
+                    </div>
+            
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

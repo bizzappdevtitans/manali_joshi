@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	<record model="ir.module.category" id="School_management_access">
+             <field name="name">School Management</field>
+        </record>
+
+
+    <record id="school_management_student" model="res.groups">
+            <field name="name">school students</field>
+            <field name="category_id" ref="School_management.School_management_access"/>
+        </record>
+
+    <record id="school_management_teacher" model="res.groups">
+            <field name="name">school teachers</field>
+            <field name="category_id" ref="School_management.School_management_access"/>
+            <field name="implied_ids" eval="[(4, ref('school_management_student'))]"/>
+        </record>
+
+    </data>
+</odoo>
+
