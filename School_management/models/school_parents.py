@@ -28,13 +28,10 @@ class SchoolParents(models.Model):
 
     @api.onchange("email")
     def validate_mail(self):
-        if self.email:
-            match = re.match(
-                "^[_a-z0-9-]+('[_a-z0-9-]+)*@[a-z0-9-]+('[a-z0-9-]+)*('[a-z]{2,4})$",
-                self.email,
-            )
-            if match == None:
-                raise ValidationError("Not a valid E-mail ID")
+       if self.email:
+        match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
+        if match == None:
+            raise ValidationError('Not a valid E-mail ID')
 
     # Phone Validation
     @api.constrains("phone")

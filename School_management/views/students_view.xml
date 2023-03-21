@@ -219,7 +219,7 @@
                         <group col="2">
                         <field name="birthdate"/>
                         <field name="birthday_month"/>
-                        <field name="age"/>
+                        <field name="age" readonly="1" force_save="1"/>
                         <field name="gender" widget="radio"/>
                         <field name="email" widget="email"/>
                         <field name="phone" widget="phone"/>
@@ -823,7 +823,7 @@
                         <field name="last_name"/>
                         <field name="combination"/>
                         <field name="birth"/>
-                        <field name="age"/>
+                        <field name="age" readonly="1" force_save="1"/>
                         <field name="student_blood_group"/>
                         <field name="gender" widget="radio"/>
                         <field name="email" widget="email"/>

@@ -32,7 +32,7 @@
             <field name="weight_ok"/>
           </xpath>
           <xpath expr="//notebook/page/field[@name='order_line'] /tree/field[@name='weight_ok']" position="after">
-            <field name="weight"/>
+            <field name="weight"  attrs="{'invisible':[('weight_ok','=',False)]}"/>
           </xpath>
         </field>
     </record>
@@ -53,7 +53,10 @@
             <field name="pur_order"/>
           </xpath>
           <xpath expr="//notebook/page[@name='operations']/field[@name='move_ids_without_package'] /tree/field[@name='product_uom_qty']" position="after">
-            <field name="weight"/>
+            <field name="weight" attrs="{'readonly':[('state','=','done')]}"/>
+          </xpath>
+          <xpath expr="//notebook/page[@name='operations']/field[@name='move_ids_without_package'] /tree/field[@name='weight']" position="after">
+            <field name="weight_ok"/>
           </xpath>
         </field>
       </record>

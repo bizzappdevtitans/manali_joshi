@@ -6,6 +6,7 @@ class SchoolDescrip(models.Model):
     saleline = fields.Integer(string="Number")
     weight_ok = fields.Boolean(string="Weight Done",related="product_template_id.weight_ok",store=True)
     weight = fields.Float(string="Weight")
+
     """ This method is used to pass the value from SO to Project"""
 
     def _timesheet_create_project_prepare_values(self):

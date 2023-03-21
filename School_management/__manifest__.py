@@ -13,6 +13,8 @@
         "data/mail_teacher_template.xml",
         "data/ir_sequence_data.xml",
         "data/cron.xml",
+        "report/report_template.xml",
+        "report/student_result_report.xml",
         "security/ir.model.access.csv",
         "security/school_security.xml",
         "views/students_view.xml",

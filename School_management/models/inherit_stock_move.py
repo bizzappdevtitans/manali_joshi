@@ -6,7 +6,10 @@ class DeliveryValue(models.Model):
 
     mrp_order = fields.Char(string="Manufacturing")
     pur_order = fields.Char(string="Purchase Order")
-    weight = fields.Float(string="Weight", compute="get_data")
+    # weight_ok = fields.Boolean(string="Weight Done",related="sale_line_id.weight_ok")
+    # weight = fields.Float(string="Weight",related="sale_line_id.weight",store=True)
+    weight_ok = fields.Boolean(string="Weight Done")
+    weight = fields.Float(string="Weight")
 
     """ This method is used to pass the value from SO to DO"""
 
@@ -22,20 +25,27 @@ class DeliveryValue(models.Model):
         )
         return vals
 
-    def get_data(self):
-        for move in self:
-            if not (move.picking_id and move.picking_id.group_id):
-                continue
-            picking = move.picking_id
-            sale_order = (
-                self.env["sale.order"]
-                .sudo()
-                .search([("procurement_group_id", "=", picking.group_id.id)], limit=1)
-            )
-            for line in sale_order.order_line:
-                if line.product_id.id != move.product_id.id:
-                    continue
-                move.update({"weight": line.weight})
+    def _get_new_picking_values(self):
+        value_order = super(DeliveryValue, self)._get_new_picking_values()
+        for values in self:
+            values.weight_ok = values.sale_line_id.weight_ok
+            values.weight = values.sale_line_id.weight
+            return value_order
+
+    # def get_data(self):
+    #     for move in self:
+    #         if not (move.picking_id and move.picking_id.group_id):
+    #             continue
+    #         picking = move.picking_id
+    #         sale_order = (
+    #             self.env["sale.order"]
+    #             .sudo()
+    #             .search([("procurement_group_id", "=", picking.group_id.id)], limit=1)
+    #         )
+    #         for line in sale_order.order_line:
+    #             if line.product_id.id != move.product_id.id:
+    #                 continue
+    #             move.update({"weight": line.weight})
 
     # def _get_new_picking_values(self):
     #     vals = super(DeliveryValue, self)._get_new_picking_values()

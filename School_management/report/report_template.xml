@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_studentsresults" >
+        <t t-call="web.external_layout">
+            <div>
+                <center>
+                    <h1><strong>BizzAppDev University</strong></h1>
+                    <br></br>
+                    <h5><strong>Examination Result</strong></h5>
+                </center>     
+            </div>
+        </t>
+    </template>
+</odoo>

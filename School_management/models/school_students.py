@@ -10,7 +10,7 @@ class SchoolStudents(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "School Management system"
 
-    standard = standard = fields.Selection(
+    standard = fields.Selection(
         [
             ("11s", "11th Science"),
             ("12s", "12th Science"),
@@ -18,7 +18,7 @@ class SchoolStudents(models.Model):
             ("12c", "12th Commerce"),
         ]
     )
-    name = fields.Char(string="Students Name")
+    name = fields.Char(string="Students Name",required="1")
     birthdate = fields.Date(string="Date of Birth")
     age = fields.Integer(string="Age", compute="_compute_age")
     gender = fields.Selection(

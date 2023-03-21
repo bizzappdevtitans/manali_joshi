@@ -27,12 +27,3 @@ class SchoolDescription(models.Model):
     #     vals = super(SchoolDescription, self)._purchase_service_prepare_order_values(supplierinfo)
     #     vals["pur_order"] = self.pur_order
     #     return vals
-
-
-
-# method of so to do but directly
-# @api.model
-# def action_confirm(self):
-#  result = super(SchoolDescription, self).action_confirm()
-#  for order in self:
-#     order.picking_ids.write({'delivery': order.delivery})
