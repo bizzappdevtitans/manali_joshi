@@ -52,6 +52,9 @@
           <xpath expr="//field[@name='delivery']" position="before">
             <field name="pur_order"/>
           </xpath>
+          <xpath expr="//field[@name='pur_order']" position="after">
+            <field name="invoice"/>
+          </xpath>
           <xpath expr="//notebook/page[@name='operations']/field[@name='move_ids_without_package'] /tree/field[@name='product_uom_qty']" position="after">
             <field name="weight" attrs="{'readonly':[('state','=','done')]}"/>
           </xpath>
@@ -156,6 +159,18 @@
             <label for="weight_ok">Weight Done</label>
           </xpath>
         </field>
-      </record> 
+      </record>
+
+<!-- stock picking type to invoice -->
+    <record id="stock_picking_type_inherit" model="ir.ui.view">
+        <field name="name">stock.picking..type.inherit.view.custom</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='return_picking_type_id']" position="after">
+            <field name="invoice"/>
+          </xpath>
+        </field>
+      </record>
 </odoo>
 
