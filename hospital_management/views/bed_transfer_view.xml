@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="action_bed_inpatient" model="ir.actions.act_window">
+            <field name="name">Bed Transfer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bed.transfer</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    
+        <record id="bed_transfer_tree_view" model="ir.ui.view">
+            <field name="name">bed.transfer.tree.view</field>
+            <field name="model">bed.transfer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                    <field name="bed_from"/>
+                    <field name="bed_to"/>
+                    <field name="reason"/>
+                    <field name="inpatient_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="bed_transfer_form_view" model="ir.ui.view">
+            <field name="name">bed.transfer.form.view</field>
+            <field name="model">bed.transfer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="date"/>
+                            <field name="bed_from"/>
+                            <field name="bed_to"/>
+                            <field name="reason"/>
+                            <field name="inpatient_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </odoo>

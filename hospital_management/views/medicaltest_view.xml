@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="medicaltest_tree" model="ir.ui.view">
+        <field name="name">hospital.medicaltest.tree</field>
+        <field name="model">hospital.medicaltest</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id" />
+                <field name="price_unit" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="medicaltest_form" model="ir.ui.view">
+        <field name="name">hospital.medicaltest.form</field>
+        <field name="model">hospital.medicaltest</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_id" />
+                        <field name="price_unit" />
+                        <field name="report_delivery_time" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="medicaltest_search" model="ir.ui.view">
+        <field name="name">hospital.medicaltest.search</field>
+        <field name="model">hospital.medicaltest</field>
+        <field name="arch" type="xml">
+            <search string="Medicaltest">
+                <field name="product_id" />                                     
+            </search>
+            </field>
+    </record>
+    
+    <record id="medicaltest_action" model="ir.actions.act_window">
+        <field name="name">Medicaltest</field>
+        <field name="res_model">hospital.medicaltest</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+</odoo>

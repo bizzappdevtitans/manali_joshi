@@ -1,0 +1,72 @@
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError, ValidationError
+from datetime import date,datetime
+
+class hospital_appointments_invoice_wizard(models.TransientModel):
+    _name = "hospital.appointments.invoice.wizard"
+    _description= 'hospital appointments invoice wizard'
+
+    def create_invoice(self):
+        active_ids = self._context.get('active_ids')
+        list_of_ids  = []
+        lab_req_obj = self.env['hospital.appointment']
+        account_invoice_obj  = self.env['account.move']
+        account_invoice_line_obj = self.env['account.move.line']
+        ir_property_obj = self.env['ir.property']
+        for active_id in active_ids: 
+            lab_req = lab_req_obj.browse(active_id)
+            lab_req.validity_status = 'invoice'
+            if lab_req.is_invoiced  == True:
+                raise UserError(_('All ready Invoiced.'))
+            if lab_req.no_invoice == False:
+                sale_journals = self.env['account.journal'].search([('type','=','sale')])
+                invoice_vals = {
+                'name': self.env['ir.sequence'].next_by_code('hospital.appointment'),
+                'invoice_origin': lab_req.name or '',
+                'move_type': 'out_invoice',
+                'ref': False,
+                'partner_id': lab_req.patient_id or False,
+                'partner_shipping_id':lab_req.patient_id.id,
+                'invoice_payment_term_id': False,
+                'team_id': False,
+                'invoice_date': date.today(),
+                }
+                res = account_invoice_obj.create(invoice_vals)
+                invoice_line_account_id = False
+                tax_ids = []
+                taxes = lab_req.consultations_id.taxes_id.filtered(lambda r: not lab_req.consultations_id.company_id or r.company_id == lab_req.consultations_id.company_id)
+                tax_ids = taxes.ids
+                invoice_line_vals = {
+                    'name': lab_req.consultations_id.name or '',
+                    'account_id': invoice_line_account_id,
+                    'price_unit':lab_req.consultations_id.lst_price,
+                    'product_uom_id':lab_req.consultations_id.uom_id.id,
+                    'quantity': 1,
+                    'product_id':lab_req.consultations_id.id,
+                }
+
+                res1 = res.write({'invoice_line_ids' :([(0,0,invoice_line_vals)]) })
+
+                list_of_ids.append(res.id)
+                if list_of_ids:
+                        imd = self.env['ir.model.data']
+                        lab_req_obj_brw = lab_req_obj.browse(self._context.get('active_id'))
+                        lab_req_obj_brw.write({'is_invoiced': True})
+                        action = self.env.ref('account.action_move_out_invoice_type')
+                        list_view_id = imd.sudo()._xmlid_to_res_id('account.view_invoice_tree')
+                        form_view_id = imd.sudo()._xmlid_to_res_id('account.view_move_form')
+                        result = {
+                                    'name': action.name,
+                                    'help': action.help,
+                                    'type': action.type,
+                                    'views': [ [list_view_id,'tree' ],[form_view_id,'form' ]],
+                                    'target': action.target,
+                                    'context': action.context,
+                                    'res_model': action.res_model,
+
+                                    }
+                        if list_of_ids:
+                            result['domain'] = "[('id','in',%s)]" % list_of_ids
+            else:
+                raise UserError(_(' The Appointment is invoice exempt   '))
+            return result

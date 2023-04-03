@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="create_appointment_form" model="ir.ui.view">
+        <field name="name">hospital.appointment.wizard.form</field>
+        <field name="model">hospital.appointment.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="get_doctors" type="object" class="oe_highlight" icon="fa-user-md">
+                    <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Doctor's</span>
+                                <span class="o_stat_text">Details</span>
+                            </div>
+                        </button>
+                    </div>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                    </group>
+                    <group>
+                        <field name="appointment_date"/>
+                        <field name="checkup_date"/>
+                        <field name="inpatient_registration_id"/>
+                        <field name="patient_status"/>
+                        <field name="urgency_level"/>
+                        <field name="appointed_doctor_id"/>
+                        <field name="consultations_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_create_patient_appointment" string="Save" class="oe_right oe_highlight" type="object"/>
+                    <button string="Cancel" class="oe_right oe_highlight" special="cancel"/>
+                    <button name="delete_data" string="Delete Data" type="object" class="btn-primary"/>
+              </footer>
+          </sheet>
+      </form>
+  </field>
+</record>
+
+
+    <record id="action_create_patient_appointment" model="ir.actions.act_window">
+        <field name="name">Create Appointments</field>
+        <field name="res_model">hospital.appointment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="create_appointment_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

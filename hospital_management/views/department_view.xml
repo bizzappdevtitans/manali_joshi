@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  
+    <record id="employees_action" model="ir.actions.act_window">
+        <field name="name">Department</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+</odoo>
