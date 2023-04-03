@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+ <!-- Top menu item --> 
+
+
+<menuitem id="hospital_root"
+              name="Hospital Management"
+              web_icon="hospital_management,static/description/icon.png"/>
+
+<menuitem id="hospital_patient"
+              name="Patients"
+              parent="hospital_root"/>
+
+<menuitem id="hospital_patient_all"
+              name="All Patients"
+              parent="hospital_patient"
+              action="all_patient_action"
+              sequence='1'/>
+
+<menuitem id="hospital_patient_male"
+              name="Male Patients"
+              parent="hospital_patient"
+              action="male_patient_action"
+              sequence='2'/>
+
+<menuitem id="hospital_patient_female"
+              name="Female Patients"
+              parent="hospital_patient"
+              action="female_patient_action"
+              sequence='3'/>
+
+<menuitem id="hospital_inpatient_details"
+              name="InPatients"
+              parent="hospital_patient"
+              action="action_medical_inpatient_registration"
+              sequence='4'/>
+
+<menuitem id="hospital_inpatient_bed"
+              name="Bed Transfer Request"
+              parent="hospital_patient"
+              action="action_bed_inpatient"
+              sequence='5'/>
+
+<menuitem id="hospital_doctor"
+              name="Doctors"
+              parent="hospital_root"
+              action="action_hospital_doctor"/>
+
+<menuitem id="all_employee"
+             name="Departments"
+             parent="hospital_root"
+             action="employees_action"/>
+
+<menuitem id="hospital_appointment"
+              name="Appointments"
+              parent="hospital_root"/>
+
+<menuitem id="all_appointment"
+              name="All Appointments"
+              parent="hospital_appointment"
+              action="appointment_action"
+              sequence='1'/>
+
+<menuitem id="kids_appointment"
+              name="Kids Appointments"
+              parent="hospital_appointment"
+              action="appointment_action_kids"
+              sequence='2'/>
+
+<menuitem id="print_patient_appointment"
+              name="Print Appointment"
+              parent="hospital_appointment"
+              action="action_report_appointment"
+              sequence='3'/>
+
+<menuitem id="create_patient_appointment"
+              name="Create Appointment"
+              parent="hospital_appointment"
+              action="action_create_patient_appointment"
+              sequence='4'/>
+
+<menuitem id="menu_search_appointment"
+              name="Search Appointment"
+              parent="hospital_appointment"
+              action="action_search_appointment"
+              sequence="5"/>
+
+
+<menuitem id="hospital_medicaltest"
+        name="Medical test"
+        parent="hospital_root"
+        action="medicaltest_action"/>
+
+  </odoo>
