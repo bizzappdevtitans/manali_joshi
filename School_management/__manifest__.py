@@ -7,7 +7,7 @@
     "description": """
     This module contains all the common features of School Management.
     """,
-    "depends": ["mail", "sale", "sale_project","mrp","stock_dropshipping"],
+    "depends": ["mail", "sale", "sale_project","mrp","stock_dropshipping","hr"],
     "data": [
         "data/mail_template.xml",
         "data/mail_teacher_template.xml",

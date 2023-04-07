@@ -429,7 +429,6 @@
         <field name="name">students.results.form</field>
         <field name="model">students.results</field>
         <field name="arch" type="xml">
-        <widget name="web_ribbon" text="Result" bg_colour="bg-success"/>
             <form>
                 <sheet>
                     <group string="Marks Details">
@@ -447,7 +446,7 @@
                        <field name="totalmarks"/>
                        <field name="percent"/>
                        <field name="eligible" widget="boolean_toggle"/>
-                       <field name="remarks" widget="emoji_char"/>
+                       <field name="remarks"/>
                    </group>
                      </group>
                 </sheet>

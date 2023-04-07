@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 class SchoolAttendance(models.Model):
     _name = "school.attendance"
     _description = "School Management system"
-    
+
     attend = fields.Char(string="Attend ID")
     date = fields.Date(string="Date")
     names_id = fields.Many2one("school.students", "Name")
@@ -31,8 +31,7 @@ class SchoolAttendance(models.Model):
         string="Details",
     )
 
-        
-# Date can not be set in past 
+    # Date can not be set in past
 
     @api.constrains("date")
     def _check_date(self):

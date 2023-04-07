@@ -143,6 +143,20 @@
             <field name="weight_ok"/>
             <label for="weight_ok">Weight Done</label>
           </xpath>
+          <xpath expr="//page[@name='sales']" position="after">
+                <page name="last_five_sale_orders" string="Last Five Sale Orders">
+                  </page>
+                </xpath>
+          <xpath expr="//notebook/page[@name='last_five_sale_orders']" position="inside">
+            <field name="sale_order_ids"/>
+          </xpath>
+          <xpath expr="//page[@name='inventory']" position="before">
+                <page name="last_five_purchase_orders" string="Last Five Purchase Orders">
+                  </page>
+                </xpath>
+          <xpath expr="//notebook/page[@name='last_five_purchase_orders']" position="inside">
+            <field name="purchase_order_ids"/>
+          </xpath>
         </field>
       </record> 
 

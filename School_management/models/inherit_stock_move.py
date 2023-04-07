@@ -25,12 +25,12 @@ class DeliveryValue(models.Model):
         )
         return vals
 
-    def _get_new_picking_values(self):
-        value_order = super(DeliveryValue, self)._get_new_picking_values()
-        for values in self:
-            values.weight_ok = values.sale_line_id.weight_ok
-            values.weight = values.sale_line_id.weight
-            return value_order
+    # def _get_new_picking_values(self):
+    #     value_order = super(DeliveryValue, self)._get_new_picking_values()
+    #     for values in self:
+    #         values.weight_ok = values.sale_line_id.weight_ok
+    #         values.weight = values.sale_line_id.weight
+    #         return value_order
 
     # def get_data(self):
     #     for move in self:
