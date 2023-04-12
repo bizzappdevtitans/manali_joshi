@@ -157,6 +157,13 @@
           <xpath expr="//notebook/page[@name='last_five_purchase_orders']" position="inside">
             <field name="purchase_order_ids"/>
           </xpath>
+          <xpath expr="//page[@name='inventory']" position="after">
+                <page name="last_five_manufractures_orders" string="Last Five Manufractures Orders">
+                  </page>
+                </xpath>
+          <xpath expr="//notebook/page[@name='last_five_manufractures_orders']" position="inside">
+            <field name="manufractures_order_ids"/>
+          </xpath>
         </field>
       </record> 
 
