@@ -22,6 +22,7 @@
         "views/desc_inherit.xml",
         "wizard/student_wizard_view.xml",
         "wizard/teacher_wizard_view.xml",
+        "wizard/mail_compose_message_view.xml",
     ],
     "license": "LGPL-3",
 }
