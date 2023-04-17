@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 <!-- Action created for students -->
-
     <record id="action_school_students" model="ir.actions.act_window">
         <field name="name">Student Details</field>
         <field name="res_model">school.students</field>
@@ -187,7 +186,7 @@
     </record> 
 
 <!-- Students form view  -->
- <record id="School_student_form" model="ir.ui.view">
+  <record id="School_student_form" model="ir.ui.view">
         <field name="name">school.students.form</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml"> 
@@ -335,7 +334,7 @@
 
 <!-- Teacher form view  -->
 
-    <record id="School_teacher_form" model="ir.ui.view">
+     <record id="School_teacher_form" model="ir.ui.view">
         <field name="name">school.teachers.form</field>
         <field name="model">school.teachers</field>
         <field name="arch" type="xml">

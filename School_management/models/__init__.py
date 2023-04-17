@@ -26,4 +26,3 @@ from . import inherit_manufracture
 from . import inherit_stock_rule
 from . import inherit_product
 from . import inherit_stock_immediate
-

@@ -37,6 +37,7 @@
         </field>
     </record>
 
+
 <!-- so to do -->
     <record id="stock_picking_inherit" model="ir.ui.view">
         <field name="name">stock.picking.inherit.view.custom</field>

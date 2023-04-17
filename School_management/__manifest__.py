@@ -20,6 +20,7 @@
         "views/students_view.xml",
         "views/school_menu_submenu.xml",
         "views/desc_inherit.xml",
+        "views/sale_order_view.xml",
         "wizard/student_wizard_view.xml",
         "wizard/teacher_wizard_view.xml",
         "wizard/mail_compose_message_view.xml",

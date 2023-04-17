@@ -4,6 +4,32 @@ from odoo import api, fields, models
 class MailComposeMessage(models.TransientModel):
     _inherit = "mail.compose.message"
 
+    product_attachments = fields.Many2many(
+        "ir.attachment", string="Product Attachments"
+    )
+    sale_order_id = fields.Many2one("sale.order", string="Sale Order")
+
+    sale_order_line_products = fields.Text(
+        string="Products Details", compute="compute_sale_order_lines"
+    )
+
+    @api.depends("model", "res_id")
+    def compute_sale_order_lines(self):
+        for wizard in self:
+            if wizard.model == "sale.order":
+                sale_order = self.env["sale.order"].browse(wizard.res_id)
+                lines = ""
+                for line in sale_order.order_line:
+                    lines += (
+                        line.product_id.display_name
+                        + "("
+                        + str(line.product_uom_qty)
+                        + ")"
+                        + "("
+                        + str(line.price_unit)
+                        + ")\n"
+                    )
+                wizard.sale_order_line_products = lines
 
     @api.model
     def default_get(self, fields_list):
@@ -32,34 +58,8 @@ class MailComposeMessage(models.TransientModel):
             res[res_ids[0]].setdefault("attachment_ids", []).extend(
                 self.object_attachment_ids.ids
             )
+        if self.product_attachments.ids and self.model and len(res_ids) == 1:
+            res[res_ids[0]].setdefault("attachment_ids", []).extend(
+                self.product_attachments.ids
+            )
         return res
-
-    # extra_attachment_ids = fields.Many2many("ir.attachment", string="Attachments")
-
-    # def action_send_mail(self):
-    #     template = self.env.ref("mail.template_data_notification_email")
-    #     for attachment in self.extra_attachment_ids:
-    #         attachment_id = self.env["ir.attachment"].create(
-    #             {
-    #                 "name": attachment.name,
-    #                 "datas": attachment.datas,
-    #                 "datas_fname": attachment.datas_fname,
-    #                 "type": attachment.type,
-    #                 "res_model": self._name,
-    #                 "res_id": self.id,
-    #             }
-    #         )
-    #         template.attachment_ids |= attachment_id
-    #         return super(MailComposeMessage, self).action_send_mail()
-
-    # attachment_ids = fields.Many2many("ir.attachment", string="Attachments")
-
-    # def show_attachment_list(self):
-    #     message_ids = self.env["mail.message"].search(
-    #         [
-    #             ("model", "=", self._context.get("default_model")),
-    #             ("res_id", "=", self._context.get("default_res_id")),
-    #         ]
-    #     )
-    #     attachment_ids = message_ids.mapped("attachment_ids").ids
-    #     self.attachment_ids = [(6, 0, attachment_ids)]
